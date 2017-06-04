@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .ball {
+      width:40px;
+      height: 40px;
+      border-radius: 20px;
+    }
+    .ball1 {
+      background: red;
+    }
+    .ball2 {
+      background: yellow;
+    }
+    .ball3 {
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="ball ball1" style="margin-left: 0;"></div>
+  <div class="ball ball2" style="margin-left: 0;"></div>
+  <div class="ball ball3" style="margin-left: 0;"></div>
+  <script>
+  var ball1 = document.querySelector('.ball1');
+  var ball2 = document.querySelector('.ball2');
+  var ball3 = document.querySelector('.ball3');
+
+  function ballAnimate (ball, distance, cb) {
+    console.log(333);
+    setTimeout(function() {
+      var marginLeft = parseInt(ball.style.marginLeft, 10);
+      if (marginLeft === distance) {
+        cb && cb();
+      } else {
+        if (marginLeft < distance) {
+          marginLeft++;
+        }else {
+          marginLeft--;
+        }
+        ball.style.marginLeft = marginLeft +"px";
+        ballAnimate(ball, distance, cb)
+      }
+    },13);
+  }
+  ballAnimate(ball1, 100, function() {
+    ballAnimate(ball2, 200, function() {
+      ballAnimate(ball3, 300, function() {
+        ballAnimate(ball3, 150, function () {
+          ballAnimate(ball2, 150, function () {
+            ballAnimate(ball1, 150, function () {
+              console.log(11111)
+            })
+          })
+        })
+      })
+    })
+  })
+  </script>
+</body>
+</html>
